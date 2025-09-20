@@ -1,0 +1,52 @@
+<%- include("partials/header.ejs") %>
+    <div class="min-vh-100">
+        <div class="container my-5">
+            <div class="row flex-row justify-content-evenly">
+                <div class="content col-12 col-xxl-8 col-xl-8 p-4">
+                    <!-- post olup olmadığı kontrol edildi. -->
+                    <% if(posts.length === 0){ %>
+                        <div class="text-center">
+                            <h3>No Post found... 😟</h3>
+                        </div>
+                    <% }else{ %>
+                        <ul class="p-0">
+                            <!-- posts dizisinde ki veriler çekilip post nesnesine aktarıldı. -->
+                            <% posts.forEach((post) => { %>
+                                <li class="p-1">
+                                    <p class="fs-6 fw-light"> <%= post.date %></p>
+                                    <!-- title kısmına link verilerek seçilen postun id si alındı ve view sayfasına yönlendirildi. -->
+                                    <h3 class="fs-2 pt-serif"><a href="/view/<%= posts.indexOf(post)%>"><%= post.title %></a></h3>
+                                    <p class="fs-5 my-4"><%= post.content %></p>
+                                </li>
+                           <% }); %>
+                        </ul>
+                    <% } %>
+                </div>
+                <div id="aside" class="content col-3 d-none d-lg-none d-md-none d-sm-none d-xl-block">
+                    <div class="text-center my-4">
+                        <a href="/create"><button class="btn btn-light fs-5 btn-lg button-rad" style="width: 90%;">Create Post</button></a>
+                    </div>
+                     <!-- post olup olmadığı kontrol edildi. -->
+                    <% if(posts.length === 0){ %>
+                        <div class="text-center">
+                            <h3>No Post found... 😟</h3>
+                        </div>
+                    <% }else { %>
+                        <div class="px-3">
+                            <p>RECENT POSTS</p>
+                            <ul class="p-0">
+                                <!-- posts dizisinde ki veriler çekilip post nesnesine aktarıldı. -->
+                                <% posts.forEach((post) => { %>
+                                    <li>
+                                        <!-- title kısmına link verilerek seçilen postun id si alındı ve view sayfasına yönlendirildi. -->
+                                        <h3 class="fs-6 pt-serif"><a href="/view/<%= posts.indexOf(post)%>"><%= post.title %></a></h3>
+                                        <hr>
+                                    </li>
+                                <% }); %>
+                            </ul>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include("partials/footer.ejs") %>

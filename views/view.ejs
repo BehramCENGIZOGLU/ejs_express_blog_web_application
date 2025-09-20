@@ -1,0 +1,18 @@
+<%- include("partials/header.ejs") %>
+    <div class="min-vh-100">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="content col-lg-8 col-12 p-4">
+                    <h1><%= title %></h1>
+                    <p><%= content %></p>
+                </div>
+                <div class="content col-lg-2 col-8 my-4 mx-4 p-4 text-center" style="height: 170px;">
+                    <!-- delete formu oluşturuldu butona basıldığında id si seçili post silinecektir. -->
+                    <form action="/delete" method="post">
+                        <input type="text" name="postId" id="postId" value="<%= postId %>" hidden>
+                        <input style="width: 85%;" class="btn btn-danger fs-5 btn-lg my-2 button-rad" type="submit" name="delete" value="Delete">
+                    </form>
+                    <!-- edit butonu oluşturuldu butona basıldığında /edit/id: sayfasına yönlendirecektir. -->
+                    <a href="/edit/<%= postId %>"><input style="width: 85%;" class="btn btn-light fs-5 btn-lg my-2 button-rad" type="button" value="Edit"></a>
+                </div>
+<%- include("partials/footer.ejs") %>
